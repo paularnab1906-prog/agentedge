@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentEdge AI — The Complete Playbook for Real Estate Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0D1B2A;
+    --navy2:  #13263D;
+    --gold:   #C9922A;
+    --gold2:  #E8B04B;
+    --teal:   #1A6B72;
+    --teal2:  #22888F;
+    --cream:  #FBF6EE;
+    --white:  #FFFFFF;
+    --grey:   #7A8A99;
+    --lgrey:  #F0F4F8;
+    --dark:   #1C2B3A;
+    --r: 0.75rem;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 40%, rgba(201,146,42,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(26,107,114,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-left {
+    padding: 80px 60px 80px 8vw;
+    z-index: 2;
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 8vw 60px 40px;
+    z-index: 2;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,146,42,0.18);
+    border: 1px solid rgba(201,146,42,0.4);
+    color: var(--gold2);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .badge::before { content: '●'; font-size: 0.5rem; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.12;
+    margin-bottom: 24px;
+  }
+  h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 44px;
+    flex-wrap: wrap;
+  }
+  .hstat { text-align: left; }
+  .hstat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .hstat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .cta-group { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 24px rgba(201,146,42,0.35);
+  }
+  .btn-primary:hover {
+    background: var(--gold2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,146,42,0.45);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); }
+
+  /* BOOK MOCKUP */
+  .book-mockup {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    filter: drop-shadow(0 32px 64px rgba(0,0,0,0.5));
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50%       { transform: translateY(-14px) rotate(-2deg); }
+  }
+  .book-cover {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--navy2) 0%, #0a1520 100%);
+    border-radius: 4px 12px 12px 4px;
+    position: relative;
+    overflow: hidden;
+    border-left: 8px solid var(--teal);
+    box-shadow:
+      inset -4px 0 12px rgba(0,0,0,0.4),
+      4px 0 0 #0a1015,
+      8px 0 0 #060d12;
+  }
+  .book-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(201,146,42,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(26,107,114,0.2) 0%, transparent 70%);
+  }
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
+  }
+  .book-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 22px;
+    z-index: 2;
+  }
+  .book-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .book-title span { color: var(--gold); }
+  .book-sub {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+    margin-bottom: auto;
+  }
+  .book-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 16px 0;
+    width: 60%;
+  }
+  .book-features {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .book-feature {
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .book-feature::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.7rem;
+  }
+  .book-footer {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .book-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .book-edition {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--navy2);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+    padding: 18px 8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .trust-item svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 8vw; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  h2 span { color: var(--gold); }
+  .lead {
+    font-size: 1.1rem;
+    color: var(--grey);
+    line-height: 1.75;
+    max-width: 620px;
+    margin-bottom: 56px;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain-section { background: var(--navy); position: relative; overflow: hidden; }
+  .pain-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 70% at 80% 50%, rgba(26,107,114,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .pain-section h2 { color: var(--white); }
+  .pain-section .lead { color: rgba(255,255,255,0.6); }
+  .pain-section .section-label { color: rgba(201,146,42,0.8); }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .pain-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r);
+    padding: 28px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .pain-card:hover {
+    border-color: rgba(201,146,42,0.3);
+    background: rgba(255,255,255,0.07);
+  }
+  .pain-icon {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .pain-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .pain-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .pain-card .pain-stat {
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    background: rgba(201,146,42,0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  /* ── WHAT YOU GET ── */
+  .get-section { background: var(--cream); }
+  .get-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .chapter-list { display: flex; flex-direction: column; gap: 4px; }
+  .chapter-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .chapter-item:hover { background: rgba(201,146,42,0.06); }
+  .ch-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    background: rgba(201,146,42,0.12);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .ch-text h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .ch-text p { font-size: 0.8rem; color: var(--grey); line-height: 1.45; }
+
+  .get-right { position: sticky; top: 40px; }
+
+  .feature-boxes { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .feat-box {
+    background: var(--white);
+    border: 1px solid rgba(13,27,42,0.08);
+    border-radius: var(--r);
+    padding: 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .feat-box:hover { box-shadow: 0 4px 32px rgba(0,0,0,0.08); }
+  .feat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .feat-icon.gold { background: rgba(201,146,42,0.12); }
+  .feat-icon.teal { background: rgba(26,107,114,0.1); }
+  .feat-icon.navy { background: rgba(13,27,42,0.08); }
+  .feat-box h4 { font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .feat-box p { font-size: 0.82rem; color: var(--grey); line-height: 1.5; }
+
+  /* ── PROOF / STATS ── */
+  .proof-section {
+    background: linear-gradient(135deg, var(--teal) 0%, #0f4a50 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .proof-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 60%);
+  }
+  .proof-section h2 { color: var(--white); }
+  .proof-section .lead { color: rgba(255,255,255,0.7); }
+  .proof-section .section-label { color: rgba(255,255,255,0.5); }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--r);
+    overflow: hidden;
+    margin-bottom: 60px;
+  }
+  .stat-block {
+    background: rgba(0,0,0,0.2);
+    padding: 36px 28px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .stat-block:hover { background: rgba(0,0,0,0.3); }
+  .stat-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold2);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+  }
+  .stat-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 6px;
+  }
+
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .testi-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--r);
+    padding: 28px;
+  }
+  .stars { color: var(--gold2); font-size: 0.85rem; margin-bottom: 14px; letter-spacing: 2px; }
+  .testi-text {
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testi-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .av1 { background: linear-gradient(135deg, #e8763a, #c94a1a); }
+  .av2 { background: linear-gradient(135deg, #3a8ee8, #1a5ec9); }
+  .av3 { background: linear-gradient(135deg, #3ae88e, #1ac95e); }
+  .testi-name { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+  .testi-role { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+  /* ── PRICING ── */
+  .pricing-section { background: var(--lgrey); }
+  .pricing-section h2 { text-align: center; }
+  .pricing-section .lead { text-align: center; margin-left: auto; margin-right: auto; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .price-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 28px;
+    border: 1px solid rgba(13,27,42,0.08);
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  }
+  .price-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.1);
+  }
+  .price-card.featured {
+    border: 2px solid var(--gold);
+    background: var(--navy);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(13,27,42,0.3);
+  }
+  .price-card.featured:hover { transform: translateY(-12px); }
+
+  .popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .tier-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+  .featured .tier-label { color: rgba(255,255,255,0.4); }
+
+  .tier-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .featured .tier-name { color: var(--white); }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .featured .price-amount { color: var(--gold); }
+  .price-amount sup { font-size: 1.4rem; vertical-align: top; margin-top: 8px; }
+  .price-note { font-size: 0.78rem; color: var(--grey); margin-bottom: 28px; }
+  .featured .price-note { color: rgba(255,255,255,0.4); }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(13,27,42,0.08);
+    margin-bottom: 24px;
+  }
+  .featured .price-divider { background: rgba(255,255,255,0.1); }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .price-features li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.88rem;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+  .featured .price-features li { color: rgba(255,255,255,0.8); }
+  .price-features li::before {
+    content: '✓';
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .featured .price-features li::before { color: var(--gold); }
+
+  .btn-price {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-price.outline {
+    border: 2px solid rgba(13,27,42,0.2);
+    color: var(--navy);
+  }
+  .btn-price.outline:hover { border-color: var(--navy); background: var(--navy); color: var(--white); }
+  .btn-price.solid {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: 0 4px 20px rgba(201,146,42,0.35);
+  }
+  .btn-price.solid:hover {
+    background: var(--gold2);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 28px rgba(201,146,42,0.45);
+  }
+
+  /* ── WHAT'S INSIDE DETAILS ── */
+  .inside-section { background: var(--white); }
+  .inside-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .inside-card {
+    background: var(--lgrey);
+    border-radius: var(--r);
+    padding: 28px;
+    border-left: 3px solid var(--gold);
+    transition: transform 0.2s;
+  }
+  .inside-card:hover { transform: translateX(4px); }
+  .inside-card .ic-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0.4;
+  }
+  .inside-card h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .inside-card p { font-size: 0.83rem; color: var(--grey); line-height: 1.6; }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--cream); }
+  .faq-grid { max-width: 760px; display: flex; flex-direction: column; gap: 4px; }
+  .faq-item {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(13,27,42,0.06);
+  }
+  .faq-q {
+    padding: 20px 24px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    font-weight: 300;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    font-size: 0.9rem;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+  .faq-a-inner { padding: 0 24px 20px; }
+  .faq-item.open .faq-a { max-height: 300px; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: var(--navy);
+    text-align: center;
+    padding: 120px 8vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 30% 50%, rgba(201,146,42,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 50%, rgba(26,107,114,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta h2 { color: var(--white); margin-bottom: 20px; }
+  .final-cta .lead { color: rgba(255,255,255,0.6); margin: 0 auto 48px; }
+  .final-cta .cta-group { justify-content: center; }
+
+  .guarantee {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .guarantee svg { width: 18px; height: 18px; color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080e15;
+    padding: 40px 8vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .footer-brand span { color: rgba(255,255,255,0.4); font-size: 0.75rem; font-family: 'DM Sans', sans-serif; display: block; font-weight: 300; margin-top: 2px; }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+  /* ── SCROLLING MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 22s linear infinite;
+    gap: 0;
+  }
+  .marquee-track span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--navy);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0 32px;
+  }
+  .marquee-track span::before {
+    content: '◆';
+    margin-right: 32px;
+    font-size: 0.5rem;
+    opacity: 0.5;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 80px 6vw 40px; }
+    .hero-right { padding: 0 6vw 80px; justify-content: flex-start; }
+    .book-mockup { width: 220px; height: 296px; }
+    .get-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .price-card.featured { transform: none; }
+    section { padding: 72px 6vw; }
+    .trust-bar { gap: 20px; }
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 2.1rem; }
+    h2 { font-size: 1.8rem; }
+    .hero-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="badge">2026 Edition &nbsp;·&nbsp; Premium Playbook</div>
+    <h1>Stop Losing Deals to<br><span>Faster Agents.</span></h1>
+    <p class="hero-sub">
+      The complete AI implementation system that gives real estate professionals
+      10+ extra hours every week — without hiring staff or making cold calls.
+    </p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">40</div>
+        <div class="hstat-label">Copy-paste<br>AI prompts</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">5</div>
+        <div class="hstat-label">Full automation<br>blueprints</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">10+</div>
+        <div class="hstat-label">Hours saved<br>per week</div>
+      </div>
+    </div>
+    <div class="cta-group">
+      <a href="https://trendswave.gumroad.com/l/core" class="btn-primary" target="_blank">
+        Get AgentEdge AI
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#pricing" class="btn-ghost">
+        See pricing
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="book-mockup">
+      <div class="book-cover">
+        <div class="book-inner">
+          <div class="book-tag">AgentEdge AI &nbsp;·&nbsp; 2026</div>
+          <div class="book-title">AI Workflows<br>for <span>Real Estate</span><br>Agents</div>
+          <div class="book-sub">The Complete Playbook for Saving 10+ Hours Per Week</div>
+          <div class="book-divider"></div>
+          <div class="book-features">
+            <div class="book-feature">40 Copy-Paste AI Prompts</div>
+            <div class="book-feature">5 Automation Blueprints</div>
+            <div class="book-feature">Zero-Latency Lead System</div>
+            <div class="book-feature">Full Tool Stack Guide</div>
+            <div class="book-feature">Compliance &amp; Privacy Rules</div>
+          </div>
+          <div class="book-footer">
+            <div class="book-brand">AgentEdge AI</div>
+            <div class="book-edition">2026 Ed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══════════════════════════════════════════════════════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>40 Copy-Paste AI Prompts</span>
+    <span>5 Full Automation Blueprints</span>
+    <span>Zero-Latency Lead Response System</span>
+    <span>100x Higher Contact Rate in 5 Minutes</span>
+    <span>10+ Hours Reclaimed Per Week</span>
+    <span>Listing Launch in 5 Minutes</span>
+    <span>Market Reports on Autopilot</span>
+    <span>MLS &amp; Fair Housing Compliance Guide</span>
+    <span>40 Copy-Paste AI Prompts</span>
+    <span>5 Full Automation Blueprints</span>
+    <span>Zero-Latency Lead Response System</span>
+    <span>100x Higher Contact Rate in 5 Minutes</span>
+    <span>10+ Hours Reclaimed Per Week</span>
+    <span>Listing Launch in 5 Minutes</span>
+    <span>Market Reports on Autopilot</span>
+    <span>MLS &amp; Fair Housing Compliance Guide</span>
+  </div>
+</div>
+
+<!-- ══ TRUST BAR ══════════════════════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    Research-backed by NAR, MIT &amp; McKinsey
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+    Instant digital delivery via Gumroad
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+    PDF + ePub formats included
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Fair Housing &amp; MLS compliant guidance
+  </div>
+</div>
+
+<!-- ══ PAIN SECTION ══════════════════════════════════════════════════ -->
+<section class="pain-section">
+  <div class="section-label">The Real Problem</div>
+  <h2 style="max-width:640px">Your competitors are already<br><span>3 hours ahead of you</span> today.</h2>
+  <p class="lead">
+    The average agent spends 60%+ of their workweek on tasks AI can handle in minutes.
+    While you're writing listing descriptions and chasing showing feedback, tech-adopting agents
+    are closing 2x more deals with the same hours.
+  </p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="pain-icon">⏳</span>
+      <h3>Lead Follow-Up Is Killing Your Pipeline</h3>
+      <p>The average response time to web leads is 42–47 hours. By then, your prospect has hired someone else.</p>
+      <div class="pain-stat">10–15 hrs lost/week</div>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">✍️</span>
+      <h3>Listing Descriptions Take Half Your Day</h3>
+      <p>Staring at a blank screen for 2–4 hours per listing. Manually formatting for MLS, social, and email — separately.</p>
+      <div class="pain-stat">$150–$300 per listing in lost time</div>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">📊</span>
+      <h3>Market Reports Nobody Reads</h3>
+      <p>You spend 3–4 hours compiling MLS data into neighborhood reports. Clients still ask questions you already answered.</p>
+      <div class="pain-stat">5 hrs/month recoverable</div>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">📱</span>
+      <h3>Social Media Is a Hamster Wheel</h3>
+      <p>5–7 hours per week designing templates and writing captions — instead of building real client relationships.</p>
+      <div class="pain-stat">$300–$600/transaction in opportunity cost</div>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">🗃️</span>
+      <h3>Your CRM Is a Graveyard</h3>
+      <p>Incomplete records, manual data entry backlog, missed follow-ups. A leaky pipeline losing you referrals daily.</p>
+      <div class="pain-stat">4–6 hrs/week on manual entry</div>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">🤝</span>
+      <h3>Reviews &amp; Referrals Happen by Accident</h3>
+      <p>90% of clients say they'd refer their agent. Most never do — because nobody ever built a system to ask them at the right moment.</p>
+      <div class="pain-stat">80%+ of top agent revenue from referrals</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT YOU GET ════════════════════════════════════════════════════ -->
+<section class="get-section" id="contents">
+  <div class="section-label">Inside AgentEdge AI</div>
+  <h2>10 chapters. Every system<br>you need to <span>scale fast.</span></h2>
+  <p class="lead">
+    Built from live industry research — NAR surveys, MIT lead response studies, McKinsey automation reports,
+    and real agent workflows. No theory. No fluff. Only implementable systems.
+  </p>
+  <div class="get-grid">
+    <div class="chapter-list">
+      <div class="chapter-item">
+        <div class="ch-num">01</div>
+        <div class="ch-text">
+          <h4>The Agentic Real Estate Shift</h4>
+          <p>Why generic prompts fail and how workflow systems drive 6-figure production</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">02</div>
+        <div class="ch-text">
+          <h4>The Zero-Latency Lead Pipeline</h4>
+          <p>Systematize the 5-minute rule to respond 100x faster and convert 21x more leads</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">03</div>
+        <div class="ch-text">
+          <h4>Hyperlocal Listing Launches</h4>
+          <p>Write premium listing copy and full marketing packages in under 5 minutes</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">04</div>
+        <div class="ch-text">
+          <h4>40 Copy-Paste AI Prompts</h4>
+          <p>Listings, lead follow-up, social media, client comms, market reports &amp; operations</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">05</div>
+        <div class="ch-text">
+          <h4>Building Micro-Market Authority</h4>
+          <p>How to get recommended by ChatGPT, Perplexity, and Google for your local market</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">06</div>
+        <div class="ch-text">
+          <h4>5 Complete Automation Blueprints</h4>
+          <p>Step-by-step setup: listing launch, lead response, showing feedback, market reports, referral harvesting</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">07</div>
+        <div class="ch-text">
+          <h4>Statistics &amp; Proof Points</h4>
+          <p>10 data-backed stats from NAR, MIT, McKinsey, and BLS to use in your business case</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">08</div>
+        <div class="ch-text">
+          <h4>The High-Efficiency Hybrid Setup</h4>
+          <p>Combine AI and a part-time VA to scale without a full-time staff cost</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">09</div>
+        <div class="ch-text">
+          <h4>Compliant &amp; Professional AI Operations</h4>
+          <p>Fair Housing Act, MLS rules, data privacy, and disclosure best practices</p>
+        </div>
+      </div>
+      <div class="chapter-item">
+        <div class="ch-num">10</div>
+        <div class="ch-text">
+          <h4>The 7-Day Efficiency Challenge</h4>
+          <p>Day-by-day implementation plan — reclaim 10+ hours in your first week</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="get-right">
+      <div class="feature-boxes">
+        <div class="feat-box">
+          <div class="feat-icon gold">📋</div>
+          <div>
+            <h4>40 Copy-Paste Ready Prompts</h4>
+            <p>Every prompt is real-estate specific with [variable] placeholders, a "what this produces" description, and a pro tip — ready to use in ChatGPT or Claude today.</p>
+          </div>
+        </div>
+        <div class="feat-box">
+          <div class="feat-icon teal">⚙️</div>
+          <div>
+            <h4>5 End-to-End Automation Blueprints</h4>
+            <p>Complete step-by-step setup guides for Zapier, Make.com, and Follow Up Boss integrations — with every tool named, every step numbered.</p>
+          </div>
+        </div>
+        <div class="feat-box">
+          <div class="feat-icon navy">🛡️</div>
+          <div>
+            <h4>Compliance Chapter Included</h4>
+            <p>Fair Housing, MLS rules, client data privacy, copyright, and disclosure requirements — the chapter every other AI guide skips.</p>
+          </div>
+        </div>
+        <div class="feat-box">
+          <div class="feat-icon gold">📈</div>
+          <div>
+            <h4>Research-Backed Throughout</h4>
+            <p>Every recommendation is supported by NAR, MIT, McKinsey, BLS, and WAV Group data — not opinion. 15 cited sources.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROOF / STATS ══════════════════════════════════════════════════ -->
+<section class="proof-section">
+  <div class="section-label" style="color:rgba(255,255,255,0.4)">The Data Doesn't Lie</div>
+  <h2>Numbers that prove<br>exactly why this matters.</h2>
+  <p class="lead">Every strategy in this playbook is backed by published industry research. Here's what the data says about agents who implement AI workflows vs. those who don't.</p>
+
+  <div class="stats-grid">
+    <div class="stat-block">
+      <div class="stat-big">100×</div>
+      <div class="stat-desc">higher contact rate when you respond to a lead within 5 minutes</div>
+      <div class="stat-source">MIT / InsideSales.com Study</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-big">97%</div>
+      <div class="stat-desc">of leading brokerages report their agents now use AI daily</div>
+      <div class="stat-source">Delta Media Group, 2026</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-big">2×</div>
+      <div class="stat-desc">more transactions per year for tech-adopting vs. traditional agents</div>
+      <div class="stat-source">Bureau of Labor Statistics, 2026</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-big">60%</div>
+      <div class="stat-desc">of the average agent's workweek spent on automatable admin tasks</div>
+      <div class="stat-source">NAR Technology Survey, 2024</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-big">41%</div>
+      <div class="stat-desc">of real estate tasks can be automated with current AI technology</div>
+      <div class="stat-source">McKinsey Global Institute, 2026</div>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"I used to spend Sunday evenings writing listing copy. Now I enter the property details, hit run, and my MLS description, Instagram caption, and email newsletter are done in 4 minutes. I genuinely got my weekends back."</p>
+      <div class="testi-author">
+        <div class="testi-avatar av1">M</div>
+        <div>
+          <div class="testi-name">Marcus T.</div>
+          <div class="testi-role">Solo Agent · Phoenix, AZ · 22 deals/yr</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"The zero-latency lead blueprint alone paid for this 20 times over in the first month. I set it up in a Saturday afternoon and started getting replies from leads within minutes — leads I would have missed by Tuesday."</p>
+      <div class="testi-author">
+        <div class="testi-avatar av2">S</div>
+        <div>
+          <div class="testi-name">Sandra K.</div>
+          <div class="testi-role">Team Lead · Austin, TX · 38 deals/yr</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"What I love most is that it doesn't feel automated to my clients. The AI prompts match my voice. My sellers think I'm responding instantly. My buyers think I'm always available. Meanwhile I'm at my daughter's soccer game."</p>
+      <div class="testi-author">
+        <div class="testi-avatar av3">R</div>
+        <div>
+          <div class="testi-name">Rachel O.</div>
+          <div class="testi-role">Listing Specialist · Denver, CO · 31 deals/yr</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT'S INSIDE DETAILS ══════════════════════════════════════════ -->
+<section class="inside-section">
+  <div class="section-label">By the Numbers</div>
+  <h2>Everything packed<br>into <span>one playbook.</span></h2>
+  <p class="lead">No upsell courses. No hidden modules. Everything you need to implement a complete AI workflow system is inside.</p>
+  <div class="inside-grid">
+    <div class="inside-card">
+      <div class="ic-num">40</div>
+      <h3>Copy-Paste AI Prompts</h3>
+      <p>8 listing descriptions · 6 lead follow-up emails · 6 social media posts · 6 client communications · 6 market reports · 8 business operations prompts</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic-num">5</div>
+      <h3>Full Automation Blueprints</h3>
+      <p>Listing Launch System · Zero-Latency Lead Engine · Auto-Showing Feedback Loop · Monthly Market Report Generator · Closed-Loop Referral Harvesting System</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic-num">15</div>
+      <h3>AI Tools Evaluated</h3>
+      <p>ChatGPT · Claude · Gemini · Perplexity · Jasper · Zapier · Make.com · Follow Up Boss · Sierra · Lofty · HouseCanary · Canva AI · Otter.ai · Calendly · Copy.ai</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic-num">10</div>
+      <h3>Industry Statistics Cited</h3>
+      <p>NAR Technology Survey · MIT Lead Response Study · McKinsey Global Institute · Bureau of Labor Statistics · Delta Media Group · WAV Group Research · Lofty Platform Data</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic-num">7</div>
+      <h3>Day Implementation Plan</h3>
+      <p>A day-by-day challenge that gets you from zero to a fully functional AI workflow stack — with the first 10+ hours recovered by the end of week one.</p>
+    </div>
+    <div class="inside-card">
+      <div class="ic-num">1</div>
+      <h3>Compliance Chapter</h3>
+      <p>Fair Housing Act requirements · MLS disclosure rules · Client data privacy best practices · Copyright guidance · State disclosure requirements</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ════════════════════════════════════════════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="section-label" style="text-align:center">Simple Pricing</div>
+  <h2>One book. Three ways<br>to <span>get it.</span></h2>
+  <p class="lead">Every tier includes the full ebook with all 40 prompts, 5 blueprints, and 10 chapters. Higher tiers add implementation tools that accelerate your setup time.</p>
+
+  <div class="pricing-grid">
+    <!-- TIER 1 -->
+    <div class="price-card">
+      <div class="tier-label">Starter</div>
+      <div class="tier-name">Core Playbook</div>
+      <div class="price-amount"><sup>$</sup>19<span style="font-size:1.8rem">.95</span></div>
+      <div class="price-note">One-time · Amazon KDP</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Complete 10-chapter ebook (PDF)</li>
+        <li>All 40 copy-paste AI prompts</li>
+        <li>All 5 automation blueprints</li>
+        <li>Full AI tool stack guide</li>
+        <li>Compliance &amp; privacy chapter</li>
+        <li>7-day implementation plan</li>
+      </ul>
+      <a href="https://trendswave.gumroad.com/l/core" class="btn-price outline" target="_blank">Buy on Gumroad</a>
+    </div>
+
+    <!-- TIER 2 — FEATURED -->
+    <div class="price-card featured">
+      <div class="popular-badge">Most Popular</div>
+      <div class="tier-label">Premium</div>
+      <div class="tier-name">Workbook Package</div>
+      <div class="price-amount"><sup>$</sup>47</div>
+      <div class="price-note">One-time · Instant digital delivery</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Everything in Core Playbook</li>
+        <li>Printable action workbooks (PDF)</li>
+        <li>Step-by-step workflow checklists</li>
+        <li>Hyperlocal lead template library</li>
+        <li>Google Business Profile guide</li>
+        <li>PDF + ePub formats</li>
+      </ul>
+      <a href="https://trendswave.gumroad.com/l/premium" class="btn-price solid" target="_blank">Get Instant Access — $47</a>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="price-card">
+      <div class="tier-label">Elite</div>
+      <div class="tier-name">Implementation Bundle</div>
+      <div class="price-amount"><sup>$</sup>97</div>
+      <div class="price-note">One-time · Instant digital delivery</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Everything in Workbook Package</li>
+        <li>Video setup walkthroughs</li>
+        <li>Click-to-import Zapier templates</li>
+        <li>Click-to-import Make.com blueprints</li>
+        <li>Brokerage AI policy template</li>
+        <li>Full 40-prompt copy-paste library</li>
+      </ul>
+      <a href="https://trendswave.gumroad.com/l/Elite" class="btn-price outline" target="_blank">Get the Elite Bundle</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ════════════════════════════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="section-label">Common Questions</div>
+  <h2>Everything you<br>need to <span>know.</span></h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q">Do I need technical experience to use this?</div>
+      <div class="faq-a"><div class="faq-a-inner">No. The ebook is written specifically for real estate agents, not developers. If you can send an email and fill out a spreadsheet, you can implement every system in this book. The automation blueprints use no-code tools like Zapier and Make.com, with free tiers to get started.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Which AI tools do I need to subscribe to?</div>
+      <div class="faq-a"><div class="faq-a-inner">You can start with just ChatGPT Plus ($20/month) and a Zapier free account. The full recommended stack runs $40–$80/month total — far less than a single VA hour. The book tells you exactly which tools are worth paying for and which free tiers are sufficient.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How quickly will I see results?</div>
+      <div class="faq-a"><div class="faq-a-inner">Most agents recover 3–5 hours in their first week just by using the 40 prompts for listing descriptions, social media, and client emails. The automation blueprints take a Saturday afternoon to set up and begin saving time immediately. The 7-Day Challenge is designed to get you operational within one week.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is AI-generated content compliant with MLS rules?</div>
+      <div class="faq-a"><div class="faq-a-inner">Chapter 9 covers this in full detail — Fair Housing compliance, MLS disclosure requirements, client data privacy, and state-specific guidance. The short answer: yes, with proper review and disclosure practices. Every prompt in the book is designed with compliance considerations built in.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What format is the ebook delivered in?</div>
+      <div class="faq-a"><div class="faq-a-inner">Instantly via Gumroad after purchase — PDF and ePub formats are included in the Premium and Elite tiers. The PDF is professionally formatted and print-ready. You'll receive an immediate download link to your email address.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will this work for solo agents and teams?</div>
+      <div class="faq-a"><div class="faq-a-inner">Yes — the book is designed for both. Solo agents benefit most from the prompt library and zero-latency lead system. Team leaders and brokerages benefit most from the automation blueprints, hybrid setup guide, and the brokerage AI policy template included in the Elite tier.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What makes this different from other real estate AI books?</div>
+      <div class="faq-a"><div class="faq-a-inner">Most AI books for real estate cover prompt basics without step-by-step automation. AgentEdge AI bridges the gap between "here's a prompt" and "here's the exact Zapier/Make.com workflow, step by step, tool by tool." It also includes the compliance chapter that every other guide skips entirely.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ══════════════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="section-label" style="color:rgba(201,146,42,0.6);text-align:center">Your Move</div>
+  <h2>The agents who wait<br>are already <span>falling behind.</span></h2>
+  <p class="lead">97% of top brokerages are deploying AI workflows right now. The window to get ahead of your local market is measured in months, not years. One afternoon of setup. 10+ hours back every week.</p>
+  <div class="cta-group">
+    <a href="https://trendswave.gumroad.com/l/premium" class="btn-primary" target="_blank" style="font-size:1.05rem; padding: 18px 36px;">
+      Get AgentEdge AI — $47
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#pricing" class="btn-ghost">Compare all tiers</a>
+  </div>
+  <div class="guarantee">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+    Instant delivery via Gumroad · PDF + ePub · No subscription required
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">
+    AgentEdge AI
+    <span>The Complete Playbook for Real Estate Agents</span>
+  </div>
+  <p>© 2026 AgentEdge AI · All rights reserved · Research-backed · Built for modern real estate professionals</p>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pain-card, .feat-box, .inside-card, .testi-card, .price-card, .chapter-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
